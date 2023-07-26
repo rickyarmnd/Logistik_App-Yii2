@@ -16,7 +16,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="/tinjauan">
+                <a class="sidebar-link" href="/barang">
                     <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Barang </span>
                 </a>
             </li>
