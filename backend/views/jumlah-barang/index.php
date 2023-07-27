@@ -23,6 +23,7 @@ CrudAsset::register($this);
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,
             'pjax'=>true,
+            'showFooter' => true,
             'columns' => require(__DIR__.'/_columns.php'),
             'panelBeforeTemplate'=>  Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Tambah Data', ['create' , 'id_barang' => $id_barang , 'id_gudang' => $id_gudang ],
             ['role'=>'modal-remote','title'=> 'Tambah Users','class'=>'btn btn-primary']),

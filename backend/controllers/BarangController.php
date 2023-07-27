@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Barang;
 use backend\models\BarangSearch;
+use common\models\JumlahBarang;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -164,10 +165,11 @@ class BarangController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($id,$id_gudang)
     {
         $request = Yii::$app->request;
-        $model = $this->findModel($id);       
+        $model = $this->findModel($id);    
+        JumlahBarang::deleteAll(['id_barang' => $id , 'id_gudang' => $id_gudang]);
 
         if($request->isAjax){
             /*

@@ -10,14 +10,12 @@ use yii\widgets\ActiveForm;
 <div class="jumlah-barang-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($model, 'id_barang')->textInput() ?>
-
-    <?= $form->field($model, 'id_gudang')->textInput() ?>
-
+    
     <?= $form->field($model, 'barang_masuk')->textInput() ?>
+	
+    <?php 
 
-    <?= $form->field($model, 'barang_keluar')->textInput() ?>
+	echo $form->field($model, 'barang_keluar')->textInput(['disabled' => $total  == null OR 0 ? true : false]) ?>
 
   
 	<?php if (!Yii::$app->request->isAjax){ ?>

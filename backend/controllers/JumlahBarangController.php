@@ -3,8 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\BarangMasuk;
-use backend\models\BarangMasukSearch;
+use common\models\JumlahBarang;
+use backend\models\JumlahBarangSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -13,9 +13,9 @@ use yii\helpers\Html;
 use yii\filters\AccessControl;
 
 /**
- * BarangMasukController implements the CRUD actions for BarangMasuk model.
+ * JumlahBarangController implements the CRUD actions for JumlahBarang model.
  */
-class BarangMasukController extends Controller
+class JumlahBarangController extends Controller
 {
     /**
      * @inheritdoc
@@ -41,23 +41,31 @@ class BarangMasukController extends Controller
 	}
 
     /**
-     * Lists all BarangMasuk models.
+     * Lists all JumlahBarang models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id_barang , $id_gudang)
     {    
-        $searchModel = new BarangMasukSearch();
+        $searchModel = new JumlahBarangSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andFilterWhere(['id_barang' => $id_barang , 'id_gudang'=> $id_gudang]);
+        $jumlah_barang_masuk = JumlahBarang::find()->where(['id_barang' => $id_barang, 'id_gudang' => $id_gudang])->sum('barang_masuk');
+        $jumlah_barang_keluar = JumlahBarang::find()->where(['id_barang' => $id_barang, 'id_gudang' => $id_gudang])->sum('barang_keluar');
+        $total = $jumlah_barang_masuk - $jumlah_barang_keluar;
+       
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'id_barang' => $id_barang,
+            'id_gudang' => $id_gudang,
+            'total' => $total
         ]);
     }
 
 
     /**
-     * Displays a single BarangMasuk model.
+     * Displays a single JumlahBarang model.
      * @param integer $id
      * @return mixed
      */
@@ -67,7 +75,7 @@ class BarangMasukController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "BarangMasuk #".$id,
+                    'title'=> "JumlahBarang #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -82,16 +90,21 @@ class BarangMasukController extends Controller
     }
 
     /**
-     * Creates a new BarangMasuk model.
+     * Creates a new JumlahBarang model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id_barang,$id_gudang)
     {
         $request = Yii::$app->request;
-        $model = new BarangMasuk();  
-
+        $model = new JumlahBarang();
+        $model->id_barang = $id_barang;
+        $model->id_gudang = $id_gudang;  
+        $jumlah_barang_masuk = JumlahBarang::find()->where(['id_barang' => $id_barang , 'id_gudang' => $id_gudang])->sum('barang_masuk');
+        $jumlah_barang_keluar = JumlahBarang::find()->where(['id_barang' => $id_barang , 'id_gudang' => $id_gudang])->sum('barang_keluar');
+        $total = $jumlah_barang_masuk - $jumlah_barang_keluar;
+        // var_dump($total);exit;
         if($request->isAjax){
             /*
             *   Process for ajax request
@@ -99,9 +112,10 @@ class BarangMasukController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Create new BarangMasuk",
+                    'title'=> "Create new JumlahBarang",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
+                        'total' => $total
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
                                 Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
@@ -110,17 +124,18 @@ class BarangMasukController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Create new BarangMasuk",
-                    'content'=>'<span class="text-success">Create BarangMasuk success</span>',
+                    'title'=> "Create new JumlahBarang",
+                    'content'=>'<span class="text-success">Create JumlahBarang success</span>',
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
                             Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
         
                 ];         
             }else{           
                 return [
-                    'title'=> "Create new BarangMasuk",
+                    'title'=> "Create new JumlahBarang",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
+                        'total' => $total
                     ]),
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
                                 Html::button('Save',['class'=>'btn btn-primary','type'=>"submit"])
@@ -136,6 +151,7 @@ class BarangMasukController extends Controller
             } else {
                 return $this->render('create', [
                     'model' => $model,
+                    'total' => $total
                 ]);
             }
         }
@@ -143,7 +159,7 @@ class BarangMasukController extends Controller
     }
 
     /**
-     * Updates an existing BarangMasuk model.
+     * Updates an existing JumlahBarang model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -161,7 +177,7 @@ class BarangMasukController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Update BarangMasuk #".$id,
+                    'title'=> "Update JumlahBarang #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -171,7 +187,7 @@ class BarangMasukController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "BarangMasuk #".$id,
+                    'title'=> "JumlahBarang #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -180,7 +196,7 @@ class BarangMasukController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Update BarangMasuk #".$id,
+                    'title'=> "Update JumlahBarang #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -203,7 +219,7 @@ class BarangMasukController extends Controller
     }
 
     /**
-     * Delete an existing BarangMasuk model.
+     * Delete an existing JumlahBarang model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -231,7 +247,7 @@ class BarangMasukController extends Controller
     }
 
      /**
-     * Delete multiple existing BarangMasuk model.
+     * Delete multiple existing JumlahBarang model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -262,15 +278,15 @@ class BarangMasukController extends Controller
     }
 
     /**
-     * Finds the BarangMasuk model based on its primary key value.
+     * Finds the JumlahBarang model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return BarangMasuk the loaded model
+     * @return JumlahBarang the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = BarangMasuk::findOne($id)) !== null) {
+        if (($model = JumlahBarang::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

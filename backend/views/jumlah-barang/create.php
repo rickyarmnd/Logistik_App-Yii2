@@ -10,5 +10,7 @@ use yii\bootstrap5\Html;
 <div class="jumlah-barang-create">
     <?= $this->render('_form', [
         'model' => $model,
+        'total' => $total
+    
     ]) ?>
 </div>

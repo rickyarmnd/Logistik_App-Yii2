@@ -31,7 +31,22 @@ class JumlahBarang extends \yii\db\ActiveRecord
         return [
             [['id_barang', 'id_gudang', 'barang_masuk', 'barang_keluar'], 'default', 'value' => null],
             [['id_barang', 'id_gudang', 'barang_masuk', 'barang_keluar'], 'integer'],
+            ['barang_keluar' , 'validateValue']
         ];
+    }
+
+    public function validateValue($attribute){
+        if($this->barang_keluar > $this->getCountTotal()) {
+            $this->addError($attribute, 'jumlahnya tidak boleh melebihi barang masuk');
+        }
+    }
+
+    public function getCountTotal(){
+        $jumlah_barang_masuk = Self::find()->where(['id_gudang' => $this->id_gudang , 'id_barang' => $this->id_barang])->sum('barang_masuk');
+        $jumlah_barang_keluar = Self::find()->where(['id_gudang' => $this->id_gudang , 'id_barang' => $this->id_barang])->sum('barang_keluar');
+        $total_barang = $jumlah_barang_masuk - $jumlah_barang_keluar;
+
+        return $total_barang;
     }
 
     /**
