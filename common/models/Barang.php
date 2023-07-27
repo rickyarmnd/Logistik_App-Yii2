@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "barang".
@@ -50,5 +51,12 @@ class Barang extends \yii\db\ActiveRecord
             'id_supplier' => 'Id Supplier',
             'tanggal_exp' => 'Tanggal Exp',
         ];
+    }
+
+    public function getAllSupplier(){
+        return ArrayHelper::map(Supplier::find()->all(), 'id', 'nama_supplier');
+    }
+    public function getSupplier(){
+        return $this->hasOne(Supplier::class , ['id' => 'id_supplier']);
     }
 }

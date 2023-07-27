@@ -21,13 +21,13 @@
                 </a>
             </li>
 
-            <!-- <li class="sidebar-item">
-                <a class="sidebar-link" href="/prediksi-pasar">
-                    <i class="align-middle" data-feather="trending-up"></i> <span class="align-middle">Prediksi Harga</span>
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="/supplier">
+                    <i class="align-middle" data-feather="trending-up"></i> <span class="align-middle">Supplier</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
                 <a class="sidebar-link" href="#">
                     <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Laporan Prediksi</span>
                 </a>
