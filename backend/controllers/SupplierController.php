@@ -6,6 +6,7 @@ use Yii;
 use common\models\Supplier;
 use backend\models\SupplieriSearch;
 use backend\models\SupplierSearch;
+use common\models\Gudang;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -213,6 +214,7 @@ class SupplierController extends Controller
     public function actionDelete($id)
     {
         $request = Yii::$app->request;
+        Gudang::deleteAll(['id_supplier' => $id]);
         $this->findModel($id)->delete();
 
         if($request->isAjax){

@@ -1,4 +1,6 @@
 <?php
+
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 return [
@@ -33,21 +35,30 @@ return [
         // 'label' => 'Kota',
     ],
     [
-        'class' => 'kartik\grid\ActionColumn',
-        'dropdown' => false,
-        'vAlign'=>'middle',
-        // 'visible' => false,
-        'urlCreator' => function($action, $model, $key, $index) { 
-                return Url::to([$action,'id'=>$key]);
+        'class' => '\kartik\grid\DataColumn',
+        'format' => 'raw',
+        'vAlign' => 'middle',
+        // 'label' => 'Aksi',
+        'width' => '150px',
+        'value' => function ($model) {
+            return Html::a('<i data-feather="edit" width="16" height="16" class="me-1 align-middle"></i> Edit', ['update', 'id' => $model->id], [
+                'class' => 'btn btn-warning btn-block',
+                'role' => 'modal-remote',
+                'title' => 'Edit',
+                'data-toggle' => 'tooltip'
+            ]) . ' ' . Html::a('<i data-feather="edit" width="16" height="16" class="me-1 align-middle"></i> Hapus', ['delete', 'id' => $model->id], [
+                'class' => 'btn btn-danger btn-block',
+                'role' => 'modal-remote', 'title' => 'Hapus',
+                'data-confirm' => false, 'data-method' => false, // for overide yii data api
+                'data-request-method' => 'post',
+                'data-toggle' => 'tooltip',
+                'data-confirm-title' => 'Hapus Barang',
+                'data-confirm-ok' => 'Yakin',
+                'data-confirm-cancel' => 'Kembali',
+                'data-confirm-message' => 'Apakah kamu yakin ingin menghapus barang ini?'
+            ]);
         },
-        // 'viewOptions'=>['role'=>'modal-remote','title'=>'Lihat','data-toggle'=>'tooltip'],
-        'updateOptions'=>['role'=>'modal-remote','title'=>'Update', 'data-toggle'=>'tooltip'],
-        'deleteOptions'=>['role'=>'modal-remote','title'=>'Hapus', 
-                          'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
-                          'data-request-method'=>'post',
-                          'data-toggle'=>'tooltip',
-                          'data-confirm-title'=>'Anda Yakin?',
-                          'data-confirm-message'=>'Apakah Anda yakin akan menghapus data ini?'], 
     ],
+    
 
 ];   

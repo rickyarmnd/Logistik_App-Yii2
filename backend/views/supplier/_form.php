@@ -51,9 +51,6 @@ $this->registerJsFile(
         ],
     ])->label('Provinsi'); ?>
 
-
-
-
     <?= $form->field($model, 'id_kota_supplier')->widget(Select2::classname(), [
         'data' => $model->getAllKota(),
         'options' => [

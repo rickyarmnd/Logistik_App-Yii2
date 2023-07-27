@@ -12,6 +12,9 @@ return [
         'cache' => [
             'class' => \yii\caching\FileCache::class,
         ],
+        'detail' => [
+            'class' => 'common\components\Detail',
+        ],
         'formatter' => [
             'class' => 'yii\i18n\Formatter',
             'thousandSeparator' => '.',
