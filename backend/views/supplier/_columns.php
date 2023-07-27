@@ -10,21 +10,27 @@ return [
         // 'class'=>'\kartik\grid\DataColumn',
         // 'attribute'=>'id',
     // ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'id_kategori_supplier',
-    ],
+    
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'nama_supplier',
     ],
     [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'id_prov_supplier',
+        'class' => '\kartik\grid\DataColumn',
+        // 'attribute'=>'',
+        'label' => 'Kategori',
+        'value' => function($model){
+            return $model->kategori->nama_kategori;
+        }
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'id_kota_supplier',
+        'attribute'=>'provinsi.nama_provinsi',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'kota.nama_kab_kota',
+        // 'label' => 'Kota',
     ],
     [
         'class' => 'kartik\grid\ActionColumn',

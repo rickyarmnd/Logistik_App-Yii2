@@ -14,6 +14,7 @@ use yii\helpers\ArrayHelper;
  * @property string|null $tanggal_produk
  * @property int|null $id_supplier
  * @property string|null $tanggal_exp
+ * @property int|null $id_gudang
  */
 class Barang extends \yii\db\ActiveRecord
 {
@@ -31,8 +32,8 @@ class Barang extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['kode_barang', 'id_supplier'], 'default', 'value' => null],
-            [['kode_barang', 'id_supplier'], 'integer'],
+            [['kode_barang', 'id_supplier', 'id_gudang'], 'default', 'value' => null],
+            [['kode_barang', 'id_supplier', 'id_gudang'], 'integer'],
             [['tanggal_produk', 'tanggal_exp'], 'safe'],
             [['nama_barang'], 'string', 'max' => 255],
         ];
@@ -50,13 +51,15 @@ class Barang extends \yii\db\ActiveRecord
             'tanggal_produk' => 'Tanggal Produk',
             'id_supplier' => 'Id Supplier',
             'tanggal_exp' => 'Tanggal Exp',
+            'id_gudang' => 'Id Gudang',
         ];
     }
-
-    public function getAllSupplier(){
+    public function getAllSupplier()
+    {
         return ArrayHelper::map(Supplier::find()->all(), 'id', 'nama_supplier');
     }
-    public function getSupplier(){
-        return $this->hasOne(Supplier::class , ['id' => 'id_supplier']);
+    public function getSupplier()
+    {
+        return $this->hasOne(Supplier::class, ['id' => 'id_supplier']);
     }
 }

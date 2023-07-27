@@ -44,14 +44,16 @@ class BarangController extends Controller
      * Lists all Barang models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id_gudang)
     {    
         $searchModel = new BarangSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->query->andFilterWhere(['id_gudang' => $id_gudang]);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'id_gudang' => $id_gudang
         ]);
     }
 

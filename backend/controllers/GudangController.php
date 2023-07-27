@@ -3,9 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\Supplier;
-use backend\models\SupplieriSearch;
-use backend\models\SupplierSearch;
+use common\models\Gudang;
+use backend\models\GudangSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -14,9 +13,9 @@ use yii\helpers\Html;
 use yii\filters\AccessControl;
 
 /**
- * SupplierController implements the CRUD actions for Supplier model.
+ * GudangController implements the CRUD actions for Gudang model.
  */
-class SupplierController extends Controller
+class GudangController extends Controller
 {
     /**
      * @inheritdoc
@@ -42,12 +41,12 @@ class SupplierController extends Controller
 	}
 
     /**
-     * Lists all Supplier models.
+     * Lists all Gudang models.
      * @return mixed
      */
     public function actionIndex()
     {    
-        $searchModel = new SupplierSearch();
+        $searchModel = new GudangSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -58,7 +57,7 @@ class SupplierController extends Controller
 
 
     /**
-     * Displays a single Supplier model.
+     * Displays a single Gudang model.
      * @param integer $id
      * @return mixed
      */
@@ -68,7 +67,7 @@ class SupplierController extends Controller
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "Supplier #".$id,
+                    'title'=> "Gudang #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel($id),
                     ]),
@@ -83,7 +82,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Creates a new Supplier model.
+     * Creates a new Gudang model.
      * For ajax request will return json object
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
@@ -91,7 +90,7 @@ class SupplierController extends Controller
     public function actionCreate()
     {
         $request = Yii::$app->request;
-        $model = new Supplier();  
+        $model = new Gudang();  
 
         if($request->isAjax){
             /*
@@ -100,7 +99,7 @@ class SupplierController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Create new Supplier",
+                    'title'=> "Create new Gudang",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -111,15 +110,15 @@ class SupplierController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Create new Supplier",
-                    'content'=>'<span class="text-success">Create Supplier success</span>',
+                    'title'=> "Create new Gudang",
+                    'content'=>'<span class="text-success">Create Gudang success</span>',
                     'footer'=> Html::button('Close',['class'=>'btn btn-default pull-left','data-bs-dismiss'=>"modal"]).
                             Html::a('Create More',['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
         
                 ];         
             }else{           
                 return [
-                    'title'=> "Create new Supplier",
+                    'title'=> "Create new Gudang",
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -144,7 +143,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Updates an existing Supplier model.
+     * Updates an existing Gudang model.
      * For ajax request will return json object
      * and for non-ajax request if update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
@@ -162,7 +161,7 @@ class SupplierController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Update Supplier #".$id,
+                    'title'=> "Update Gudang #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -172,7 +171,7 @@ class SupplierController extends Controller
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Supplier #".$id,
+                    'title'=> "Gudang #".$id,
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
@@ -181,7 +180,7 @@ class SupplierController extends Controller
                 ];    
             }else{
                  return [
-                    'title'=> "Update Supplier #".$id,
+                    'title'=> "Update Gudang #".$id,
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -204,7 +203,7 @@ class SupplierController extends Controller
     }
 
     /**
-     * Delete an existing Supplier model.
+     * Delete an existing Gudang model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -232,7 +231,7 @@ class SupplierController extends Controller
     }
 
      /**
-     * Delete multiple existing Supplier model.
+     * Delete multiple existing Gudang model.
      * For ajax request will return json object
      * and for non-ajax request if deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
@@ -263,15 +262,15 @@ class SupplierController extends Controller
     }
 
     /**
-     * Finds the Supplier model based on its primary key value.
+     * Finds the Gudang model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Supplier the loaded model
+     * @return Gudang the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Supplier::findOne($id)) !== null) {
+        if (($model = Gudang::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

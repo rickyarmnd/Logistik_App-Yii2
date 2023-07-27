@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Supplier;
+use common\models\Gudang;
 
 /**
- * SupplieriSearch represents the model behind the search form about `common\models\Supplier`.
+ * GudangSearch represents the model behind the search form about `common\models\Gudang`.
  */
-class SupplieriSearch extends Supplier
+class GudangSearch extends Gudang
 {
     /**
      * @inheritdoc
@@ -18,8 +18,8 @@ class SupplieriSearch extends Supplier
     public function rules()
     {
         return [
-            [['id', 'id_kategori_supplier', 'id_prov_supplier', 'id_kec_supplier', 'id_kota_supplier'], 'integer'],
-            [['nama_supplier'], 'safe'],
+            [['id', 'id_supplier'], 'integer'],
+            [['nama_gudang'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class SupplieriSearch extends Supplier
      */
     public function search($params)
     {
-        $query = Supplier::find();
+        $query = Gudang::find()->joinWith('supplier');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,13 +57,10 @@ class SupplieriSearch extends Supplier
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'id_kategori_supplier' => $this->id_kategori_supplier,
-            'id_prov_supplier' => $this->id_prov_supplier,
-            'id_kec_supplier' => $this->id_kec_supplier,
-            'id_kota_supplier' => $this->id_kota_supplier,
+            'id_supplier' => $this->id_supplier,
         ]);
 
-        $query->andFilterWhere(['like', 'nama_supplier', $this->nama_supplier]);
+        $query->andFilterWhere(['like', 'nama_gudang', $this->nama_gudang]);
 
         return $dataProvider;
     }

@@ -22,44 +22,15 @@
             </li>
 
             <li class="sidebar-item">
+                <a class="sidebar-link" href="/gudang">
+                    <i class="align-middle" data-feather="trending-up"></i> <span class="align-middle">Gudang</span>
+                </a>
+            </li>
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="/supplier">
                     <i class="align-middle" data-feather="trending-up"></i> <span class="align-middle">Supplier</span>
                 </a>
             </li>
-
-            <!-- <li class="sidebar-item">
-                <a class="sidebar-link" href="#">
-                    <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Laporan Prediksi</span>
-                </a>
-            </li> -->
-
-            <!-- <li class="sidebar-header">
-                Master Data
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="/bahan-pokok">
-                    <i class="align-middle" data-feather="globe"></i> <span class="align-middle">Data Bahan Pokok</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="/produk">
-                    <i class="align-middle" data-feather="box"></i> <span class="align-middle">Data Produk</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="/satuan-produk">
-                    <i class="align-middle" data-feather="dollar-sign"></i> <span class="align-middle">Data Satuan Produk</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="/pasar">
-                    <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Data Pasar</span>
-                </a>
-            </li> -->
 
         </ul>
     </div>
