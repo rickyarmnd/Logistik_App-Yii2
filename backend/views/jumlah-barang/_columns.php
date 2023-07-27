@@ -25,7 +25,7 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'barang_keluar',
         'footerOptions' => ['style' => 'text-align:left; background-color: #FFECB4;'],
-        'footer' => $total ?? 0,
+        'footer' => $total,
     ],
     [
         'class' => '\kartik\grid\DataColumn',
