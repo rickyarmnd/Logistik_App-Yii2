@@ -3,16 +3,18 @@
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\BarangKeluar */
+/* @var $model common\models\JumlahBarang */
 ?>
-<div class="barang-keluar-view">
+<div class="jumlah-barang-view">
  
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
-            'id_kode_barang_keluar',
-            'jumlah_barang_keluar',
+            'id_barang',
+            'id_gudang',
+            'barang_masuk',
+            'barang_keluar',
         ],
     ]) ?>
 

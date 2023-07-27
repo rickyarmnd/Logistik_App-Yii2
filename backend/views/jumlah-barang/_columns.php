@@ -12,11 +12,19 @@ return [
     // ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'id_kode_barang_masuk',
+        'attribute'=>'id_barang',
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'jumlah_barang_masuk',
+        'attribute'=>'id_gudang',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'barang_masuk',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'barang_keluar',
     ],
     [
         'class' => 'kartik\grid\ActionColumn',

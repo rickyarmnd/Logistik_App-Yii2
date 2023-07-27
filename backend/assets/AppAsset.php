@@ -15,6 +15,7 @@ class AppAsset extends AssetBundle
         '/css/app.css',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.css',
         'lib/remixicon/fonts/remixicon.css',
+        '/css/feather.css',
     ];
     public $js = [
         '/js/app.js'

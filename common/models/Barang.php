@@ -62,4 +62,7 @@ class Barang extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Supplier::class, ['id' => 'id_supplier']);
     }
+    public function getGudang(){
+        return $this->hasOne(Gudang::class , ['id' => 'id_gudang']);
+    }
 }

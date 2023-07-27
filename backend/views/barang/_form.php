@@ -35,14 +35,6 @@ use yii\helpers\Url;
         ]
     ]); ?>
 
-    <?= $form->field($model, 'id_supplier')->widget(Select2::classname(), [
-        'data' => $model->allSupplier,
-        'options' => ['placeholder' => 'Pilih Supplier ...',],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ])->label('Supplier'); ?>
-
     <?= $form->field($model, 'tanggal_exp')->widget(DateControl::classname(), [
         'type' => DateControl::FORMAT_DATE,
         'ajaxConversion' => false,

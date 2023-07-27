@@ -4,10 +4,10 @@ use yii\bootstrap5\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\BarangMasuk */
+/* @var $model common\models\JumlahBarang */
 
 ?>
-<div class="barang-masuk-create">
+<div class="jumlah-barang-create">
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>

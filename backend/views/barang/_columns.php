@@ -21,19 +21,26 @@ return [
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal_produk',
+        'label' => 'Tanggal Produksi'
     ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'id_supplier',
-    ],
+    // [
+    //     'class'=>'\kartik\grid\DataColumn',
+    //     'attribute'=>'supplier.nama_supplier',
+    // ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'tanggal_exp',
+        'label' => 'Tanggal Experied'
     ],
+    // [
+        // 'class'=>'\kartik\grid\DataColumn',
+        // 'attribute'=>'id_gudang',
+    // ],
     [
         'class' => 'kartik\grid\ActionColumn',
         'dropdown' => false,
         'vAlign'=>'middle',
+        'visible' => false,
         'urlCreator' => function($action, $model, $key, $index) { 
                 return Url::to([$action,'id'=>$key]);
         },

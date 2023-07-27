@@ -32,7 +32,7 @@ CrudAsset::register($this);
             'responsive' => true,          
             'panel' => [
                 'type' => 'primary', 
-                'heading' => '<span class="text-light"><i class="fas fa fa-list" aria-hidden="true"></i> Suppliers listing</spa>',
+                'heading' => '<span class="text-light"><i class="fas fa fa-list" aria-hidden="true"></i> Daftar Supplier</spa>',
                 'after'=>false,
             ]
         ])?>

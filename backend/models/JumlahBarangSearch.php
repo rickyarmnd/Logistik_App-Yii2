@@ -5,12 +5,12 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Barang;
+use common\models\JumlahBarang;
 
 /**
- * BarangSearch represents the model behind the search form about `common\models\Barang`.
+ * JumlahBarangSearch represents the model behind the search form about `common\models\JumlahBarang`.
  */
-class BarangSearch extends Barang
+class JumlahBarangSearch extends JumlahBarang
 {
     /**
      * @inheritdoc
@@ -18,8 +18,7 @@ class BarangSearch extends Barang
     public function rules()
     {
         return [
-            [['id', 'kode_barang', 'id_supplier', 'id_gudang'], 'integer'],
-            [['nama_barang', 'tanggal_produk', 'tanggal_exp'], 'safe'],
+            [['id', 'id_barang', 'id_gudang', 'barang_masuk', 'barang_keluar'], 'integer'],
         ];
     }
 
@@ -41,7 +40,7 @@ class BarangSearch extends Barang
      */
     public function search($params)
     {
-        $query = Barang::find()->joinWith('gudang' , 'supplier');
+        $query = JumlahBarang::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -57,14 +56,11 @@ class BarangSearch extends Barang
 
         $query->andFilterWhere([
             'id' => $this->id,
-            'kode_barang' => $this->kode_barang,
-            'tanggal_produk' => $this->tanggal_produk,
-            'id_supplier' => $this->id_supplier,
-            'tanggal_exp' => $this->tanggal_exp,
+            'id_barang' => $this->id_barang,
             'id_gudang' => $this->id_gudang,
+            'barang_masuk' => $this->barang_masuk,
+            'barang_keluar' => $this->barang_keluar,
         ]);
-
-        $query->andFilterWhere(['like', 'nama_barang', $this->nama_barang]);
 
         return $dataProvider;
     }

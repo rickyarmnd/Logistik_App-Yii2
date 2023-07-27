@@ -11,24 +11,24 @@
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="/site">
-                    <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                    <i class="align-middle" data-feather=""></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="/barang">
-                    <i class="align-middle" data-feather="edit-3"></i> <span class="align-middle">Barang </span>
+                    <i class="align-middle" data-feather="feather-package"></i> <span class="align-middle"> Daftar Barang </span>
                 </a>
             </li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="/gudang">
-                    <i class="align-middle" data-feather="trending-up"></i> <span class="align-middle">Gudang</span>
+                    <i class="align-middle" data-feather="feather-database"></i> <span class="align-middle">Gudang</span>
                 </a>
             </li>
             <li class="sidebar-item">
                 <a class="sidebar-link" href="/supplier">
-                    <i class="align-middle" data-feather="trending-up"></i> <span class="align-middle">Supplier</span>
+                    <i class="align-middle" data-feather="feather-user"></i> <span class="align-middle">Supplier</span>
                 </a>
             </li>
 

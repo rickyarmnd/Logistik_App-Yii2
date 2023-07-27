@@ -3,17 +3,21 @@ use yii\bootstrap5\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\BarangMasuk */
+/* @var $model common\models\JumlahBarang */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="barang-masuk-form">
+<div class="jumlah-barang-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_kode_barang_masuk')->textInput() ?>
+    <?= $form->field($model, 'id_barang')->textInput() ?>
 
-    <?= $form->field($model, 'jumlah_barang_masuk')->textInput() ?>
+    <?= $form->field($model, 'id_gudang')->textInput() ?>
+
+    <?= $form->field($model, 'barang_masuk')->textInput() ?>
+
+    <?= $form->field($model, 'barang_keluar')->textInput() ?>
 
   
 	<?php if (!Yii::$app->request->isAjax){ ?>

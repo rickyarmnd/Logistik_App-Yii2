@@ -44,16 +44,28 @@ class BarangController extends Controller
      * Lists all Barang models.
      * @return mixed
      */
-    public function actionIndex($id_gudang)
+    public function actionDetailBarang($id_gudang, $id_supplier)
     {    
         $searchModel = new BarangSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->query->andFilterWhere(['id_gudang' => $id_gudang]);
+        $dataProvider->query->andFilterWhere(['gudang.id' => $id_gudang]);
+                            // ->andFilterWhere(['supplier.id' => $id_supplier]);
+        
+        return $this->render('index_detail_barang', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'id_gudang' => $id_gudang,
+            'id_supplier' => $id_supplier, 
+        ]);
+    }
+
+    public function actionIndex(){
+        $searchModel = new BarangSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'id_gudang' => $id_gudang
         ]);
     }
 
@@ -89,11 +101,12 @@ class BarangController extends Controller
      * and for non-ajax request if creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id_gudang, $id_supplier)
     {
         $request = Yii::$app->request;
         $model = new Barang();  
-
+        $model->id_gudang = $id_gudang;
+        $model->id_supplier = $id_supplier;
         if($request->isAjax){
             /*
             *   Process for ajax request

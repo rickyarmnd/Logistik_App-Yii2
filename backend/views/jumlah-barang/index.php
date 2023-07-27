@@ -7,16 +7,16 @@ use cangak\ajaxcrud\CrudAsset;
 use cangak\ajaxcrud\BulkButtonWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\BarangKeluarSearch */
+/* @var $searchModel backend\models\JumlahBarangSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Barang Keluars';
+$this->title = 'Jumlah Barangs';
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 
 ?>
-<div class="barang-keluar-index">
+<div class="jumlah-barang-index">
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
@@ -24,7 +24,7 @@ CrudAsset::register($this);
             'filterModel' => $searchModel,
             'pjax'=>true,
             'columns' => require(__DIR__.'/_columns.php'),
-            'panelBeforeTemplate'=>  Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Tambah Data', ['create'],
+            'panelBeforeTemplate'=>  Html::a('<i class="fas fa fa-plus" aria-hidden="true"></i> Tambah Data', ['create' , 'id_barang' => $id_barang , 'id_gudang' => $id_gudang ],
             ['role'=>'modal-remote','title'=> 'Tambah Users','class'=>'btn btn-primary']),
             'summary' => false,         
             'striped' => true,
@@ -32,7 +32,7 @@ CrudAsset::register($this);
             'responsive' => true,          
             'panel' => [
                 'type' => 'primary', 
-                'heading' => '<span class="text-light"><i class="fas fa fa-list" aria-hidden="true"></i> Barang Keluars listing</spa>',
+                'heading' => '<span class="text-light"><i class="fas fa fa-list" aria-hidden="true"></i> Jumlah Barangs listing</spa>',
                 'after'=>false,
             ]
         ])?>
