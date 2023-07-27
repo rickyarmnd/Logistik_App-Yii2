@@ -24,10 +24,6 @@ return [
     ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'id_kec_supplier',
-    ],
-    [
-        'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'id_kota_supplier',
     ],
     [

@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use common\models\KetegoriSupplierBarang;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "supplier".
@@ -49,5 +51,22 @@ class Supplier extends \yii\db\ActiveRecord
             'id_kec_supplier' => 'Id Kec Supplier',
             'id_kota_supplier' => 'Id Kota Supplier',
         ];
+    }
+
+    public function getAllKategori()
+    {
+        return ArrayHelper::map(KetegoriSupplierBarang::find()->all(), 'id', 'nama_supplier');
+    }
+    public function getAllProvinsi(){
+        return ArrayHelper::map(RefProvinsi::find()->all(), 'id', 'nama_provinsi');
+        
+    }
+    public function getAllKecamatan(){
+        return ArrayHelper::map(RefKecamatan::find()->all(), 'id', 'nama_kecamatan');
+        
+    }
+    public function getAllKota(){
+        return ArrayHelper::map(RefKecamatanKota::find()->all(), 'id', 'nama_kota');
+        
     }
 }
