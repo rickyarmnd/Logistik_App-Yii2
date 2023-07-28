@@ -106,6 +106,7 @@ class BarangController extends Controller
     {
         $request = Yii::$app->request;
         $model = new Barang();  
+        $model->kode_barang = Yii::$app->detail->getKodeItems();
         $model->id_gudang = $id_gudang;
         $model->id_supplier = $id_supplier;
         if($request->isAjax){

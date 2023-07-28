@@ -39,7 +39,7 @@ return [
         'format' => 'raw',
         'vAlign' => 'middle',
         // 'label' => 'Aksi',
-        'width' => '150px',
+        'width' => '190px',
         'value' => function ($model) {
             return Html::a('<i data-feather="edit" width="16" height="16" class="me-1 align-middle"></i> Edit', ['update', 'id' => $model->id], [
                 'class' => 'btn btn-warning btn-block',

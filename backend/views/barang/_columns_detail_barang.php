@@ -43,7 +43,7 @@ return [
         'format' => 'raw',
         'vAlign' => 'middle',
         // 'label' => 'Aksi',
-        'width' => '290px',
+        'width' => '350px',
         'value' => function ($model) {
             return Html::a('<i data-feather="edit" width="16" height="16" class="me-1 align-middle"></i> Jumlah Barang', ['../jumlah-barang', 'id_barang' => $model->id ,'id_gudang' => $model->id_gudang ], [
                 'class' => 'btn btn-primary btn-block',

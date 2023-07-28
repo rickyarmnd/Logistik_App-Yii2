@@ -2,6 +2,7 @@
 
 namespace common\components;
 
+use BadFunctionCallException;
 use common\models\Barang;
 use common\models\Gudang;
 use common\models\Supplier;
@@ -19,5 +20,9 @@ class Detail extends Component{
     }
     public function getCountAllBarang(){
         return Barang::find()->count();
+    }
+    public function getKodeItems(){
+        $date = date("ymd-His");
+        return $date;
     }
 }

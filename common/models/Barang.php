@@ -33,9 +33,9 @@ class Barang extends \yii\db\ActiveRecord
     {
         return [
             [['kode_barang', 'id_supplier', 'id_gudang'], 'default', 'value' => null],
-            [['kode_barang', 'id_supplier', 'id_gudang'], 'integer'],
+            [['id_supplier', 'id_gudang'], 'integer'],
             [['tanggal_produk', 'tanggal_exp'], 'safe'],
-            [['nama_barang'], 'string', 'max' => 255],
+            [['kode_barang', 'nama_barang'], 'string', 'max' => 255],
         ];
     }
 
