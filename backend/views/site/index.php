@@ -10,7 +10,7 @@ $this->title = 'Aplikasi Logistik';
             <div class="d-flex align-items-end row">
                 <div class="col-sm-7">
                     <div class="card-body">
-                        <h2 class="card-title text-primary">Welcome Back Unch! 🎉</h2>
+                        <h2 class="card-title text-primary">Welcome Back, Unch! 🎉</h2>
                         <p class="mb-4">Check your new badge in your profile.
                         </p>
                     </div>

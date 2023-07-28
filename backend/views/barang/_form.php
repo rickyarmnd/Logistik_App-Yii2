@@ -19,7 +19,7 @@ use yii\helpers\Url;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'kode_barang')->textInput() ?>
+    <?= $form->field($model, 'kode_barang')->textInput(['readonly' => true]) ?>
 
     <?= $form->field($model, 'nama_barang')->textInput(['maxlength' => true]) ?>
 
