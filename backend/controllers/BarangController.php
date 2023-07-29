@@ -5,7 +5,9 @@ namespace backend\controllers;
 use Yii;
 use common\models\Barang;
 use backend\models\BarangSearch;
+use common\models\Gudang;
 use common\models\JumlahBarang;
+use common\models\Supplier;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -45,18 +47,22 @@ class BarangController extends Controller
      * Lists all Barang models.
      * @return mixed
      */
-    public function actionDetailBarang($id_gudang, $id_supplier)
+    public function actionDetailGudang($id_gudang, $id_supplier)
     {    
         $searchModel = new BarangSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $dataProvider->query->andFilterWhere(['gudang.id' => $id_gudang]);
                             // ->andFilterWhere(['supplier.id' => $id_supplier]);
+        $gudang = Gudang::findOne($id_gudang);
+        $supplier = Supplier::findOne($id_supplier);
+        $jumlah_barang = Barang::find()->where(['id_gudang' => $id_gudang ,'id_supplier' => $id_supplier])->count();
         
-        return $this->render('index_detail_barang', [
+        return $this->render('index_detail_gudang', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'id_gudang' => $id_gudang,
-            'id_supplier' => $id_supplier, 
+            'gudang' => $gudang,
+            'supplier' => $supplier,
+            'jumlah_barang' => $jumlah_barang
         ]);
     }
 

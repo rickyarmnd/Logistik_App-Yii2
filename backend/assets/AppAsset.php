@@ -17,7 +17,7 @@ class AppAsset extends AssetBundle
         'lib/remixicon/fonts/remixicon.css',
         '/css/core.css',
         '/css/theme-default.css',
-        'assets/css/demo.css',
+        '/css/demo.css',
         '/fonts/boxicons.css'
     ];
     public $js = [

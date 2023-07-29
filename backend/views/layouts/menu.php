@@ -27,6 +27,14 @@
                     <i class="align-middle" data-feather="box"></i> <span class="align-middle"> List All Items</span>
                 </a>
             </li>
+            <li class="sidebar-header">
+                Setings
+            </li>
+            <li class="sidebar-item">
+                <a class="sidebar-link" data-method="POST" href="/site/logout">
+                    <i class="align-middle" data-feather="box"></i> <span class="align-middle"> Log Out</span>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

@@ -5,6 +5,9 @@ namespace backend\controllers;
 use Yii;
 use common\models\JumlahBarang;
 use backend\models\JumlahBarangSearch;
+use common\models\Barang;
+use common\models\Gudang;
+use common\models\Supplier;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -44,7 +47,7 @@ class JumlahBarangController extends Controller
      * Lists all JumlahBarang models.
      * @return mixed
      */
-    public function actionIndex($id_barang , $id_gudang)
+    public function actionIndex($id_barang , $id_gudang , $id_supplier)
     {    
         $searchModel = new JumlahBarangSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -52,13 +55,17 @@ class JumlahBarangController extends Controller
         $jumlah_barang_masuk = JumlahBarang::find()->where(['id_barang' => $id_barang, 'id_gudang' => $id_gudang])->sum('barang_masuk');
         $jumlah_barang_keluar = JumlahBarang::find()->where(['id_barang' => $id_barang, 'id_gudang' => $id_gudang])->sum('barang_keluar');
         $total = $jumlah_barang_masuk - $jumlah_barang_keluar;
-       
+        
+        $gudang = Gudang::findOne($id_gudang);
+        $barang = Barang::findOne($id_barang);
+        $supplier = Supplier::findOne($id_supplier);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'id_barang' => $id_barang,
-            'id_gudang' => $id_gudang,
+            'barang' => $barang,
+            'gudang' => $gudang,
+            'supplier' => $supplier,
             'total' => $total
         ]);
     }

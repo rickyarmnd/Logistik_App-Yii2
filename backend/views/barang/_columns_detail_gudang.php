@@ -45,7 +45,7 @@ return [
         // 'label' => 'Aksi',
         'width' => '350px',
         'value' => function ($model) {
-            return Html::a('<i data-feather="edit" width="16" height="16" class="me-1 align-middle"></i> Jumlah Barang', ['../jumlah-barang', 'id_barang' => $model->id ,'id_gudang' => $model->id_gudang ], [
+            return Html::a('<i data-feather="info" width="16" height="16" class="me-1 align-middle"></i> Detail Barang', ['../jumlah-barang', 'id_barang' => $model->id ,'id_gudang' => $model->id_gudang ,'id_supplier' => $model->id_supplier ], [
                 'class' => 'btn btn-primary btn-block',
                 // 'role' => 'modal-remote',
                 'data-pjax' => 0,
@@ -56,7 +56,7 @@ return [
                 'role' => 'modal-remote',
                 'title' => 'Edit',
                 'data-toggle' => 'tooltip'
-            ]) . ' ' . Html::a('<i data-feather="edit" width="16" height="16" class="me-1 align-middle"></i> Hapus', ['delete', 'id' => $model->id , 'id_gudang' => $model->id_gudang], [
+            ]) . ' ' . Html::a('<i data-feather="trash" width="16" height="16" class="me-1 align-middle"></i> Hapus', ['delete', 'id' => $model->id , 'id_gudang' => $model->id_gudang], [
                 'class' => 'btn btn-danger btn-block',
                 'role' => 'modal-remote', 'title' => 'Hapus',
                 'data-confirm' => false, 'data-method' => false, // for overide yii data api

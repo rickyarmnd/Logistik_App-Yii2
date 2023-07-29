@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Gudang;
 use backend\models\GudangSearch;
+use common\models\Barang;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -209,17 +210,19 @@ class GudangController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($id , $id_supplier)
     {
         $request = Yii::$app->request;
+        Barang::deleteAll(['id_gudang' => $id , 'id_supplier' => $id_supplier]);
         $this->findModel($id)->delete();
 
         if($request->isAjax){
-            /*
+            /* 
             *   Process for ajax request
             */
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+            // Yii::$app->response->format = Response::FORMAT_JSON;
+            // return ['forceClose'=>true,'forceReload'=>'#crud-datatable-pjax'];
+            return $this->redirect(['index']);
         }else{
             /*
             *   Process for non-ajax request

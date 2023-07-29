@@ -24,7 +24,7 @@ return [
         'class' => '\kartik\grid\DataColumn',
         'format' => 'raw',
         'value' => function ($model) {
-            return Html::a('Detail Barang', ['../barang/detail-barang', 'id_gudang' => $model->id , 'id_supplier' => $model->id_supplier], ['class' => 'btn btn-primary w-100']);
+            return Html::a('Detail Barang', ['../barang/detail-gudang', 'id_gudang' => $model->id , 'id_supplier' => $model->id_supplier], ['class' => 'btn btn-primary w-100' , 'data-pjax' => 0]);
         }
     ],
     // [
